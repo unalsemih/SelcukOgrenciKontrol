@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelcukOgrenciKontrol", "SelcukOgrenciKontrol\SelcukOgrenciKontrol.csproj", "{2ABD4079-888D-4F39-B430-0E51FCF76A8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2ABD4079-888D-4F39-B430-0E51FCF76A8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ABD4079-888D-4F39-B430-0E51FCF76A8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ABD4079-888D-4F39-B430-0E51FCF76A8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ABD4079-888D-4F39-B430-0E51FCF76A8F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90F8BB92-DDEF-4591-B6F6-C3443AD2807D}
+	EndGlobalSection
+EndGlobal

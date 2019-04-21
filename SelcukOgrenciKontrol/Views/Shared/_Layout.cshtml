@@ -1,0 +1,165 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Selçuk Kontrol</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Content/script.js"></script>
+</head>
+<style>
+
+    .page-item{
+        cursor:pointer;
+    }
+
+    .form-control:focus {
+        border-color: #cccccc;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .form-control:hover {
+        cursor: default;
+    }
+
+    .imlec:hover,.imlec:hover,.imlec:hover {
+        cursor:pointer !important;
+        
+    }
+
+</style>
+<body style="padding-top:0px;  font-size: 12pt;">
+
+    <nav class="navbar navbar-default" style="margin-top:0px;">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menulist" aria-expanded="false">
+                    <span class="sr-only">Menü</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="">Anasayfa</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="menulist">
+
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li>
+                        <a href="~/Account/Login">
+                            <span class="glyphicon glyphicon-log-in"></span>&nbsp;Giriş
+                        </a>
+                    </li>
+                   
+
+
+                    
+
+                 
+                    <li class="dropdown">
+                        <a href="#"
+                           class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="fa fa-search"></span>&nbsp;Arama Yap
+                            @* TODO: mesaj sayısı eklenecek *@
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu">
+
+                            Sorgu Seçiniz
+                            <li><a href="message.html">Bugun</a></li>
+                            <li><a href="message.html">Bugun Giriş Yapanlar</a></li>
+                            <li><a href="message.html">Bugun Çıkış Yapanlar</a></li>
+                            <li class="divider" role="separator"></li>
+                            <li><a href="#">Tüm Öğrenciler</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="~/Account/logout">
+                            <span class="glyphicon glyphicon-log-out"></span>&nbsp;Çıkış
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+
+    <script>
+
+        var durum = 0;
+        /*
+        $(".imlec").next().hide();
+        $(".imlec").click(function () {
+            if ($(this).hasClass("text-success")) {
+
+            }
+            else {
+                $(".imlec").removeClass("text-success");
+                if (durum != 0)
+                    $(".imlec").next().hide(400);
+                $(this).next().show(400);
+                $(this).addClass("text-success");
+                durum++;
+            }
+        });
+        */
+        $(this).addClass("text-success");
+        $(".imlec").click(function () {
+
+            if ($(this).hasClass("text-success"))
+                $(this).removeClass("text-success");
+            else
+                $(this).addClass("text-success");
+            $(this).next().slideToggle();
+        });
+
+        
+        $("#fontMinus").click(function () {
+            var size = $("#resultTable").css("font-size");
+            var fontSize = size.split("px");
+            $("#resultTable").css("font-size", (fontSize[0]-2)+"px");
+
+        });
+
+        $("#fontPlus").click(function () {
+            var size = $("#resultTable").css("font-size");
+            var fontSize = size.split("px");
+            fontSize[0]++;
+            $("#resultTable").css("font-size", (fontSize[0]++) + "px");
+        });
+
+
+
+
+        // paging ...
+        $(".page-link").click(function () {
+            $(".page-link").css("color", "#007bff");
+            $(".page-link").css("background-color", "#fff");
+            $(this).css("background-color", "#007bff");
+            $(this).css("color", "#fff");
+            
+          
+        });
+
+
+    </script>
+
+
+</body>
+</html>

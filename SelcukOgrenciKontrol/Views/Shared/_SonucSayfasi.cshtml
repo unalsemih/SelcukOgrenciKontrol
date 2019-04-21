@@ -1,0 +1,79 @@
+﻿@model SelcukOgrenciKontrol.Models.Home.Loglar
+<hr />
+<div class="row text-center">
+    <button id="fontMinus" class=" btn btn-success"><span class="fa fa-minus"></span></button>
+    <button id="fontPlus" class="btn btn-danger"><span class="fa fa-plus"></span></button>
+</div>
+<hr />
+<h3 class="text-center text-danger">Sonuçlar -- <small>@Model.logSayisi kayıt bulundu</small></h3>
+
+<table class="table table-dark  col-sm-6" id="resultTable">
+    <thead>
+        <tr>
+            <th scope="col">Photo</th>
+            <th scope="col">Cihaz IP</th>
+            <th scope="col">Cihaz No</th>
+            <th scope="col">Islem Turu</th>
+            <th scope="col">KapiID</th>
+            <th scope="col">Kontrol Eden</th>
+            <th scope="col">Ogrenci Numarası</th>
+            <th scope="col">Senkronize</th>
+            <th scope="col">TC No</th>
+            <th scope="col">Tarih</th>
+
+            <th scope="col">Tarih</th>
+            <th scope="col">Id</th>
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.logList)
+        {
+            <tr style="text-align:center;">
+                <th scope="row"><img src="~/images/account.png" class="img-circle img-responsive" style="width:120px" /></th>
+                <td style="vertical-align:middle; ">@item.CihazIP</td>
+                <td style="vertical-align:middle;">@item.CihazNo</td>
+                <td style="vertical-align:middle;">@item.IslemTuru</td>
+                <td style="vertical-align:middle;">@item.KapiID</td>
+                <td style="vertical-align:middle;">@item.KontrolEden</td>
+                <td style="vertical-align:middle;">@item.OgrenciNo</td>
+                <td style="vertical-align:middle;">@item.Senkronize</td>
+                <td style="vertical-align:middle;">@item.TCKIMLIK</td>
+                <td style="vertical-align:middle;">@item.Tarih</td>
+                <td style="vertical-align:middle;">@item.Tarih</td>
+                <td style="vertical-align:middle;">@item.id</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+
+<nav aria-label="..." class="text-center">
+    <ul class="pagination pagination-lg">
+        @for (int i = 0; i < Model.sayfaSayisi; i++)
+        {
+            <li class="page-item"><a href="~/Home/Index/@(i+1)" class="page-link" id="page@(i + 1)">@(i + 1)</a></li>
+        }
+
+    </ul>
+</nav>
+
+
+
+
+<script>
+
+    $(".page-item").click(function () {
+
+        console.log("" + $(this).children().text());
+    });
+
+    $(@("page"+Model.activePageNumber)).css("background-color", "#007bff");
+    $(@("page"+Model.activePageNumber)).css("color", "#fff");
+
+
+</script>

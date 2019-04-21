@@ -1,0 +1,153 @@
+﻿@model SelcukOgrenciKontrol.Models.Home.HomePage
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+
+    <h3>Arama Yap</h3>
+    <hr>
+    <div class="row ">
+        <div class="col-md-3 imlec text-success">
+
+            <span>Tarih Bilgileri</span>
+        </div>
+        <div class="col-md-9">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sorguBilgileri.baslangicTarih, "Başlangıç Tarihi", htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.sorguBilgileri.baslangicTarih, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sorguBilgileri.bitisTarih, "Bitiş Tarihi", htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.sorguBilgileri.bitisTarih, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row ">
+        <div class="col-md-3 imlec text-success">
+            <span>Numara Bilgileri</span>
+        </div>
+        <div class="col-md-9">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sorguBilgileri.numara, "Öğrenci Numarası", htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.sorguBilgileri.numara, new { htmlAttributes = new { @class = "form-control", type = "text", maxlength = "9" } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row ">
+        <div class="col-md-3 imlec text-success">
+            <span>Ad Soyad Bilgileri</span>
+        </div>
+        <div class="col-md-9">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sorguBilgileri.ad, "Ad", htmlAttributes: new { @class = "control-label col-md-5" })@*Şimdilik Senkronize yazıldı çünkü ad soyad bilgileri yok.*@
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.sorguBilgileri.ad, new { htmlAttributes = new { @class = "form-control", type = "text" } })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sorguBilgileri.soyad, "Soyad", htmlAttributes: new { @class = "control-label col-md-5" })@*Şimdilik Senkronize yazıldı çünkü ad soyad bilgileri yok.*@
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.sorguBilgileri.soyad, new { htmlAttributes = new { @class = "form-control", type = "text" } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row ">
+        <div class="col-md-3 imlec text-success">
+            <span>Fakülte Bilgileri</span>
+        </div>
+        <div class="col-md-9">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.sorguBilgileri.fakulteler, "Fakülte Adı", htmlAttributes: new { @class = "control-label col-md-5", @style = "text-align:left;" })
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.sorguBilgileri.fakulteler, (List<SelectListItem>)Model.sorguBilgileri.fakulteler, htmlAttributes: new { @class = "form-control", @onchange = "controlBlocks()" })
+                    @Html.ValidationMessageFor(model => model.sorguBilgileri.fakulteler, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.sorguBilgileri.bloklar, "Blok Adı", htmlAttributes: new { @class = "control-label col-md-5", @style = "text-align:left;" })
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.sorguBilgileri.bloklar, (List<SelectListItem>)Model.sorguBilgileri.bloklar, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                    @Html.ValidationMessageFor(model => model.sorguBilgileri.bloklar, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <hr>
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-success">
+            <span class="fa fa-search"></span> Arama Yap
+        </button>
+    </div>
+}
+
+
+@Html.Partial("_SonucSayfasi", Model.logBilgileri);
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    function controlBlocks() {
+
+        if ($("#sorguBilgileri_fakulteler").val() != 0)
+            $("#sorguBilgileri_bloklar").removeAttr("disabled");
+        else {
+            $("#sorguBilgileri_bloklar").attr("disabled", "disabled");
+        }
+
+
+        $.getJSON("http://localhost/blokJson.json",
+            function (veri) {
+
+            var id = veri.id;
+            var name = veri.blokAdi;
+            console.log(id + "id , name = " + name);
+        });
+
+/*
+        var stateId = $('#sorguBilgileri_fakulteler').val();
+        $.ajax({
+            url: 'http://localhost/blokJson',
+
+            type: "GET",
+            dataType: "JSON",
+            success: function (cities) {
+                $("#sorguBilgileri_bloklar").html(""); // clear before appending new list
+                $.each(blocks, function (i, city) {
+                    $("#sorguBilgileri_bloklar").append(
+                        $('<option></option>').val(blocks.id).html(city.CityName));
+                });
+            }
+        });
+
+        */
+    }
+
+
+
+
+
+    </script>
